@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">傘いる？</string>
+    <string name="hello_world">傘いる？</string>
+    <string name="time_settings">時間設定</string>
+    <string name="geo_settings">場所設定</string>
+    <string name="title_activity_time_setting">TimeSetting</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
