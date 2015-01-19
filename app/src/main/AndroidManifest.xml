@@ -18,7 +18,10 @@
         </activity>
         <activity
             android:name=".TimeSetting"
-            android:label="@string/title_activity_time_setting"></activity>
+            android:label="@string/title_activity_time_setting" />
+        <activity
+            android:name=".GeoSetting"
+            android:label="@string/title_activity_geo_setting"></activity>
     </application>
 
 </manifest>

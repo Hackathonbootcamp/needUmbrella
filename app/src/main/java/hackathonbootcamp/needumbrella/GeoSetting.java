@@ -7,19 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Main extends ActionBarActivity {
+public class GeoSetting extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_geo_setting);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_geo_setting, menu);
         return true;
     }
 
@@ -31,13 +31,8 @@ public class Main extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.time_settings) {
-            Intent intent = new Intent(this, TimeSetting.class);
-            startActivity(intent);
-        }
-
-        if (id == R.id.geo_settings) {
-            Intent intent = new Intent(this, GeoSetting.class);
+        if (id == R.id.main_settings) {
+            Intent intent = new Intent(this, Main.class);
             startActivity(intent);
         }
 

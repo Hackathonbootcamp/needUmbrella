@@ -3,9 +3,11 @@
 
     <string name="app_name">傘いる？</string>
     <string name="hello_world">傘いる？</string>
+    <string name="main_settings">戻る</string>
     <string name="time_settings">時間設定</string>
     <string name="geo_settings">場所設定</string>
-    <string name="title_activity_time_setting">TimeSetting</string>
+    <string name="title_activity_time_setting">時間設定</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_geo_setting">場所設定</string>
 
 </resources>
