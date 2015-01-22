@@ -1,10 +1,16 @@
 package hackathonbootcamp.needumbrella;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class GeoSetting extends ActionBarActivity {
@@ -13,6 +19,20 @@ public class GeoSetting extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geo_setting);
+        EditText geoBizEdit = (EditText) findViewById(R.id.geoBizEdit);
+        EditText geoHomeEdit = (EditText) findViewById(R.id.geoHomeEdit);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        geoBizEdit.setText(sp.getString("GeoBizString", null), TextView.BufferType.NORMAL);
+        geoHomeEdit.setText(sp.getString("GeoHomeString", null), TextView.BufferType.NORMAL);
+
+        Button saveButton = (Button) findViewById(R.id.geoSave);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                saveGeoClick();
+            }
+        });
+
     }
 
 
@@ -37,5 +57,14 @@ public class GeoSetting extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveGeoClick() {
+        // 保存
+        EditText geoBizEdit = (EditText) findViewById(R.id.geoBizEdit);
+        EditText geoHomeEdit = (EditText) findViewById(R.id.geoHomeEdit);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp.edit().putString("GeoBizString", geoBizEdit.getText().toString()).commit();
+        sp.edit().putString("GeoHomeString", geoHomeEdit.getText().toString()).commit();
     }
 }

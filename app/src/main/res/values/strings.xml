@@ -9,6 +9,12 @@
     <string name="title_activity_time_setting">時間設定</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_geo_setting">場所設定</string>
+<<<<<<< HEAD
     <string name="title_activity_activity_alarm_notification">activity_alarm_notification</string>
+=======
+    <string name="home_geo">自宅</string>
+    <string name="biz_geo">会社</string>
+    <string name="save_geo">場所保存</string>
+>>>>>>> FETCH_HEAD
 
 </resources>
