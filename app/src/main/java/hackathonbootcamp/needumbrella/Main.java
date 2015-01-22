@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import hackathonbootcamp.needumbrella.alarm.NeedUmbrellaAlarmManager;
+import hackathonbootcamp.needumbrella.common.AlarmConstants;
 
 
 public class Main extends ActionBarActivity {
@@ -13,6 +18,20 @@ public class Main extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //AlarmService用のテストコード (start)
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button button = (Button)v;
+                NeedUmbrellaAlarmManager am = new NeedUmbrellaAlarmManager(getApplicationContext());
+                am.addAlarm(AlarmConstants.WAKE_UP_SERVICE_ID, 21, 26);
+                am.addAlarm(AlarmConstants.GO_OUT_SERVICE_ID, 21, 27);
+            }
+        });
+        //AlarmService用のテストコード (end)
     }
 
 
