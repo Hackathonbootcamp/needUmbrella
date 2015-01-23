@@ -72,7 +72,7 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
         String getHome = sp.getString("GeoHomeString", null);
         String homeResult = isRainyDay(getHome);
 
-        if (bizResult != null || homeResult != null) {
+        if (bizResult != "" || homeResult != "") {
             String alarmMsg = bizResult + homeResult + "傘忘れんときや！";
             Context context = getApplicationContext();
             Intent notification = new Intent(context, NeedUmbrellaAlarmNotificationActivity.class);
