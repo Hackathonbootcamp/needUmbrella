@@ -9,8 +9,6 @@ public class NeedUmbrellaAlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent notification = new Intent(context, NeedUmbrellaAlarmNotificationActivity.class);
-        notification.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(notification);
+        context.startService(new Intent(context, NeedUmbrellaSensorIntentService.class));
     }
 }

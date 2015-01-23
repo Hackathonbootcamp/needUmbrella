@@ -23,7 +23,8 @@ public class NeedUmbrellaAlarmNotificationActivity  extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getApplicationContext(), "アラーム起動しましたよ！", Toast.LENGTH_LONG).show();
+        String alarmMsg = getIntent().getStringExtra("alarmMsg");
+        Toast.makeText(getApplicationContext(), alarmMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
