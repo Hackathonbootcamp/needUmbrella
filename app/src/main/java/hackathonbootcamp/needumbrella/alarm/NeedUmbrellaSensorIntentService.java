@@ -51,8 +51,8 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
                             if (doubleVal > 0.0) {
                                 returnVal = sensorData.getName() + "で雨ふってるで。";
                             } else {
-//                                //TODO テスト後に削除
-//                                returnVal = sensorData.getName() + "で雨ふってるで。";
+                                //TODO 常に雨にする。テスト後に削除
+                               returnVal = sensorData.getName() + "で雨ふってるで。";
                             }
                         }
                     }

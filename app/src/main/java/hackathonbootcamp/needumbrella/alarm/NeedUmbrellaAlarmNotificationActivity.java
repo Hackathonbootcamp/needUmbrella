@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import hackathonbootcamp.needumbrella.R;
+import hackathonbootcamp.needumbrella.common.TextSpeaker;
 
 public class NeedUmbrellaAlarmNotificationActivity  extends Activity {
     private static final String TAG = NeedUmbrellaAlarmNotificationActivity.class.getSimpleName();
@@ -24,6 +25,10 @@ public class NeedUmbrellaAlarmNotificationActivity  extends Activity {
     public void onStart() {
         super.onStart();
         String alarmMsg = getIntent().getStringExtra("alarmMsg");
+
+        TextSpeaker speaker = new TextSpeaker();
+        speaker.talk(alarmMsg);
+
         Toast.makeText(getApplicationContext(), alarmMsg, Toast.LENGTH_LONG).show();
     }
 
