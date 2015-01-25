@@ -45,7 +45,6 @@ public class NeedUmbrellaAlarmManager {
         if (cal.getTimeInMillis() < System.currentTimeMillis()) {
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
-        am.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pi);
         am.setRepeating(AlarmManager.RTC, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
         Toast.makeText(c, String.format("%02d時%02d分に予約しました。(サービスID:%02d)", alarmHour, alarmMinute, serviceId), Toast.LENGTH_LONG).show();
     }
