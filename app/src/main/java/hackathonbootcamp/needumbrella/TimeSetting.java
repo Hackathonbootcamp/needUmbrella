@@ -1,10 +1,19 @@
 package hackathonbootcamp.needumbrella;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.util.Calendar;
+
+import hackathonbootcamp.needumbrella.alarm.NeedUmbrellaAlarmManager;
+import hackathonbootcamp.needumbrella.common.AlarmConstants;
 
 
 public class TimeSetting extends ActionBarActivity {
@@ -14,6 +23,44 @@ public class TimeSetting extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_setting);
     }
+    //起床時間セット
+    public void wakeUpTime(View v){
+
+        final Calendar calendar = Calendar.getInstance();
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar.get(Calendar.MINUTE);
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        NeedUmbrellaAlarmManager needUmbrellaAlarmManager = new NeedUmbrellaAlarmManager(getApplicationContext());
+                        needUmbrellaAlarmManager.addAlarm(AlarmConstants.WAKE_UP_SERVICE_ID, hourOfDay, minute);
+                        //設定時刻確認用
+                        Toast.makeText(TimeSetting.this, "【時間設定画面】：" + hourOfDay + "時" + minute + "分" + "に起床時間をセット", Toast.LENGTH_LONG).show();
+                    }
+                }, hour, minute, true);
+        timePickerDialog.show();
+    }
+
+    //出勤時間セット
+    public void goOutTime(View v){
+
+        final Calendar calendar = Calendar.getInstance();
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar.get(Calendar.MINUTE);
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        NeedUmbrellaAlarmManager needUmbrellaAlarmManager = new NeedUmbrellaAlarmManager(getApplicationContext());
+                        needUmbrellaAlarmManager.addAlarm(AlarmConstants.GO_OUT_SERVICE_ID, hourOfDay, minute);
+                        //設定時刻確認用
+                        Toast.makeText(TimeSetting.this, "【時間設定画面】：" + hourOfDay + "時" + minute + "分" + "に出社時間をセット", Toast.LENGTH_LONG).show();
+                    }
+                }, hour, minute, true);
+        timePickerDialog.show();
+    }
+
 
 
     @Override
