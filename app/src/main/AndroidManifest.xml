@@ -27,17 +27,19 @@
             android:name=".GeoSetting"
             android:label="@string/title_activity_geo_setting" />
 
+
+        <!-- アラーム関連のサービス、レシーバー、アクティビティ -->
+        <service android:name=".alarm.NeedUmbrellaAlarmService" />
         <receiver android:name=".alarm.NeedUmbrellaAlarmReceiver" >
             <intent-filter>
                 <action android:name="NeedUmbrellaAlarmAction" />
             </intent-filter>
         </receiver>
-
-        <service android:name=".alarm.NeedUmbrellaAlarmService" />
-
-        <activity android:name=".alarm.NeedUmbrellaAlarmNotificationActivity" />
-
         <service android:name=".alarm.NeedUmbrellaSensorIntentService" />
+        <activity
+            android:name=".EnvReport"
+            android:label="@string/title_activity_env_report" />
+
     </application>
 
 </manifest>

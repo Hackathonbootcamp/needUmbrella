@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import hackathonbootcamp.needumbrella.EnvReport;
 import hackathonbootcamp.needumbrella.common.GetEnvSensorResult;
 import jp.ne.docomo.smt.dev.environmentsensor.data.EnvironmentObservationData;
 import jp.ne.docomo.smt.dev.environmentsensor.data.EnvironmentSensorData;
@@ -52,7 +53,7 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
                                 returnVal = sensorData.getName() + "で雨ふってるで。";
                             } else {
                                 //TODO 常に雨にする。テスト後に削除
-                               returnVal = sensorData.getName() + "で雨ふってるで。";
+//                               returnVal = sensorData.getName() + "で雨ふってるで。";
                             }
                         }
                     }
@@ -69,13 +70,13 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String geoBiz = sp.getString("GeoBizString", null);
         String bizResult = isRainyDay(geoBiz);
-        String getHome = sp.getString("GeoHomeString", null);
-        String homeResult = isRainyDay(getHome);
+        String geoHome = sp.getString("GeoHomeString", null);
+        String homeResult = isRainyDay(geoHome);
 
         if (bizResult != "" || homeResult != "") {
             String alarmMsg = bizResult + homeResult + "傘忘れんときや！";
             Context context = getApplicationContext();
-            Intent notification = new Intent(context, NeedUmbrellaAlarmNotificationActivity.class);
+            Intent notification = new Intent(context, EnvReport.class);
             notification.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             notification.putExtra("alarmMsg", alarmMsg);
             context.startActivity(notification);
