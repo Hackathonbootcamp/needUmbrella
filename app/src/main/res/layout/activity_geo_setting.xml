@@ -9,22 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="hackathonbootcamp.needumbrella.GeoSetting">
 
-    <EditText
-        android:id="@+id/geoHomeEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/geoBizEdit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/geoBizEdit"
-        android:layout_below="@+id/geoHomeText"
-        android:inputType="number"
-        android:textSize="42sp" />
-
     <TextView
         android:id="@+id/geoHomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
         android:text="@string/home_geo"
         android:textSize="42sp" />
 
@@ -34,33 +23,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/geoHomeEdit"
+        android:layout_below="@+id/spnHome"
         android:text="@string/biz_geo"
-        android:textSize="42sp" />
-
-    <EditText
-        android:id="@+id/geoBizEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/geoBizText"
-        android:inputType="number"
         android:textSize="42sp" />
 
     <Button
         android:id="@+id/geoSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:focusableInTouchMode="false"
         android:text="@string/save_geo"
         android:textSize="60sp" />
+
+    <Spinner
+        android:id="@+id/spnHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/geoHomeText"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:id="@+id/spnBiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/geoBizText"
+        android:spinnerMode="dropdown" />
 
 </RelativeLayout>
