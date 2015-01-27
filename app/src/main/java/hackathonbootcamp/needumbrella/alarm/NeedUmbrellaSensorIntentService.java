@@ -19,6 +19,8 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
     private final static String TAG = NeedUmbrellaSensorIntentService.class.getSimpleName();
 
     protected GetEnvSensorResult gsr;
+    private SharedPreferences sp;
+    private boolean isAlwaysRainMode;
 
     public NeedUmbrellaSensorIntentService(String name) {
         super(name);
@@ -49,10 +51,8 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
                         for (String val : valList) {
                             double doubleVal = new Double(val);
                             Log.v(TAG, Double.toString(doubleVal));
-                            if (doubleVal > 0.0) {
+                            if (doubleVal > 0.0 || isAlwaysRainMode) {
                                 returnVal = sensorData.getName() + "で雨ふってるで。";
-                            } else {
-                               returnVal = sensorData.getName() + "で雨ふってるで。";
                             }
                         }
                     }
@@ -66,14 +66,16 @@ public class NeedUmbrellaSensorIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        isAlwaysRainMode = sp.getBoolean("RainMode", false);
+
         String geoBiz = sp.getString("GeoBizString", null);
         String bizResult = isRainyDay(geoBiz);
         String geoHome = sp.getString("GeoHomeString", null);
         String homeResult = isRainyDay(geoHome);
 
         if (bizResult != "" || homeResult != "") {
-            String alarmMsg = bizResult + homeResult + "傘忘れんときや！";
+            String alarmMsg = homeResult + bizResult + "傘忘れんときや！";
             Context context = getApplicationContext();
             Intent notification = new Intent(context, EnvReport.class);
             notification.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -41,6 +41,11 @@ public class Main extends ActionBarActivity {
             startActivity(intent);
         }
 
+        if (id == R.id.dev_settings) {
+            Intent intent = new Intent(this, DevSetting.class);
+            startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

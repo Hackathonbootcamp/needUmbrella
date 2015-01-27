@@ -42,6 +42,7 @@ public class TextSpeaker {
                 at.play();
                 at.write(resultData, 0, resultData.length);
                 Thread.sleep(resultData.length / 32);
+                at.release(); //本当はonStopで呼ぶらしい
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -36,9 +36,16 @@
             </intent-filter>
         </receiver>
         <service android:name=".alarm.NeedUmbrellaSensorIntentService" />
+
+        <!-- 雨量最新情報画面 -->
         <activity
             android:name=".EnvReport"
             android:label="@string/title_activity_env_report" />
+
+        <!-- 開発ツール画面 -->
+        <activity
+            android:name=".DevSetting"
+            android:label="@string/title_activity_dev_setting" />
 
     </application>
 
