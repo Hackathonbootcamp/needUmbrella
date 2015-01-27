@@ -5,4 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SpinnerItemStyle" parent="android:Widget.Holo.Light.TextView.SpinnerItem">
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="SpinnerDropDownItemStyle" parent="android:Widget.Holo.Light.DropDownItem">
+        <item name="android:textSize">60sp</item>
+    </style>
 </resources>

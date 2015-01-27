@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">傘いる？</string>
+    <string name="app_name">傘いる君</string>
     <string name="hello_world">傘いる？</string>
     <string name="main_settings">戻る</string>
     <string name="time_settings">時間設定</string>
@@ -17,4 +17,5 @@
     <string name="env_report">雨量最新情報</string>
     <string name="title_activity_dev_setting">開発ツール</string>
     <string name="dev_settings">開発ツール</string>
+    <string name="logo">logo</string>
 </resources>
