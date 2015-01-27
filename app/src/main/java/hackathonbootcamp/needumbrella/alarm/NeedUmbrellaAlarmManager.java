@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -46,7 +45,7 @@ public class NeedUmbrellaAlarmManager {
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
         am.setRepeating(AlarmManager.RTC, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
-        Toast.makeText(c, String.format("%02d時%02d分に予約しました。(サービスID:%02d)", alarmHour, alarmMinute, serviceId), Toast.LENGTH_LONG).show();
+//        Toast.makeText(c, String.format("%02d時%02d分に予約しました。(サービスID:%02d)", alarmHour, alarmMinute, serviceId), Toast.LENGTH_LONG).show();
     }
 
     public void stopAlarm() {
