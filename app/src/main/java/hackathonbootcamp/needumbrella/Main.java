@@ -31,6 +31,11 @@ public class Main extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.env_report) {
+            Intent intent = new Intent(this, EnvReport.class);
+            startActivity(intent);
+        }
+
         if (id == R.id.time_settings) {
             Intent intent = new Intent(this, TimeSetting.class);
             startActivity(intent);

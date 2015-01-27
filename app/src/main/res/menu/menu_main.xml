@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Main">
     <item
+        android:id="@+id/env_report"
+        android:orderInCategory="100"
+        android:title="@string/env_report"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/time_settings"
         android:orderInCategory="100"
         android:title="@string/time_settings"

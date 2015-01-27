@@ -14,6 +14,7 @@
     <string name="save_geo">場所保存</string>
 
     <string name="title_activity_env_report">雨量最新情報</string>
+    <string name="env_report">雨量最新情報</string>
     <string name="title_activity_dev_setting">開発ツール</string>
     <string name="dev_settings">開発ツール</string>
 </resources>
