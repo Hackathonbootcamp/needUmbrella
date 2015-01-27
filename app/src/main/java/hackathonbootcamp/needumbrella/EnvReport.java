@@ -10,7 +10,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,25 +40,28 @@ public class EnvReport extends ActionBarActivity {
         setContentView(R.layout.activity_env_report);
 
         gsr = new GetEnvSensorResult();
+
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String homeId = sp.getString("GeoBizString", null);
         String bizId = sp.getString("GeoHomeString", null);
 
-
         TextView homeNameView = (TextView) findViewById(R.id.rep_home_name);
         TextView homeValView = (TextView) findViewById(R.id.rep_home_val);
+        ImageView homeWeatherImg = (ImageView) findViewById(R.id.rep_home_weather_img);
         homeData = new HashMap<String, Object>();
         homeData.put("id", homeId);
         homeData.put("name_view", homeNameView);
         homeData.put("val_view", homeValView);
+        homeData.put("weather_img", homeWeatherImg);
 
         TextView bizNameView = (TextView) findViewById(R.id.rep_biz_name);
         TextView bizValView = (TextView) findViewById(R.id.rep_biz_val);
+        ImageView bizWeatherImg = (ImageView) findViewById(R.id.rep_biz_weather_img);
         bizData = new HashMap<String, Object>();
         bizData.put("id", bizId);
         bizData.put("name_view", bizNameView);
         bizData.put("val_view", bizValView);
-
+        bizData.put("weather_img", bizWeatherImg);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
@@ -68,15 +73,17 @@ public class EnvReport extends ActionBarActivity {
     public void onStart() {
         super.onStart();
 
+        ViewGroup viewGroup = (ViewGroup)findViewById(R.id.background);
+
         //画面に雨量最新情報を表示
-        EnvReportAsyncTask homeTask = new EnvReportAsyncTask(getApplicationContext(), homeData);
+        EnvReportAsyncTask homeTask = new EnvReportAsyncTask(getApplicationContext(), viewGroup, homeData);
         homeTask.execute();
-        EnvReportAsyncTask bizTask = new EnvReportAsyncTask(getApplicationContext(), bizData);
+        EnvReportAsyncTask bizTask = new EnvReportAsyncTask(getApplicationContext(), viewGroup, bizData);
         bizTask.execute();
 
         //音声通知
         String alarmMsg = getIntent().getStringExtra("alarmMsg");
-        if (alarmMsg != null && alarmMsg != "") {
+        if (alarmMsg != null && ! "".equals(alarmMsg)) {
             TextSpeaker speaker = new TextSpeaker();
             speaker.talk(alarmMsg);
             Toast.makeText(getApplicationContext(), alarmMsg, Toast.LENGTH_LONG).show();
@@ -88,14 +95,16 @@ public class EnvReport extends ActionBarActivity {
      */
     private class EnvReportAsyncTask extends AsyncTask<Void, Integer, Long> {
         private Context context;
+        private ViewGroup viewGroup;
         private HashMap<String, Object> data;
 
         private String nameText;
         private String valText;
+        private int weatherImgId;
 
-
-        public EnvReportAsyncTask(Context context, HashMap<String, Object> data) {
+        public EnvReportAsyncTask(Context context, ViewGroup viewGroup, HashMap<String, Object> data) {
             this.context = context;
+            this.viewGroup = viewGroup;
             this.data = data;
         }
 
@@ -122,12 +131,13 @@ public class EnvReport extends ActionBarActivity {
                                 double doubleVal = new Double(val);
                                 Log.v(TAG, Double.toString(doubleVal));
 
-                                //TODO 常に雨にする。テスト後に削除
-                                if (doubleVal > 0.0) {
-                                    this.nameText = sensorData.getName();
-                                    this.valText = val;
+                                this.nameText = sensorData.getName();
+                                this.valText = val;
 
-                                    Log.v(TAG, sensorData.getName() + "で雨ふってるで。");
+                                if (doubleVal > 0.0) {
+                                    this.weatherImgId = R.drawable.rainy;
+                                }else {
+                                    this.weatherImgId = R.drawable.sunny;
                                 }
                             }
                         }
@@ -144,11 +154,18 @@ public class EnvReport extends ActionBarActivity {
         protected void onPostExecute(Long aLong) {
             super.onPostExecute(aLong);
 
+            //住所
             TextView nameView = (TextView) this.data.get("name_view");
             nameView.setText(this.nameText);
-
+            //降水量
             TextView valView = (TextView) this.data.get("val_view");
-            valView.setText("降水量：" + this.valText + "mm");
+            valView.setText(this.valText + "mm");
+            //天気アイコン
+            ImageView weatherImg = (ImageView) this.data.get("weather_img");
+            this.viewGroup.removeView(weatherImg);
+            weatherImg.setImageResource(this.weatherImgId);
+            this.viewGroup.addView(weatherImg);
+
         }
     }
 

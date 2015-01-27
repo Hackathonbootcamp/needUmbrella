@@ -11,35 +11,84 @@
 
     <TextView
         android:id="@+id/rep_home_name"
+        android:text="家の住所"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="21sp" />
+        android:textSize="22sp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rep_home_weather_img"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rep_home_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/rainy" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rep_home_label1"
+        android:text="降水量"
+        android:layout_alignTop="@+id/rep_home_weather_img"
+        android:layout_toRightOf="@+id/rep_home_weather_img"
+        android:layout_toEndOf="@+id/rep_home_name"
+        android:textSize="14sp"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:id="@+id/rep_home_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/rep_home_name"
-        android:textSize="16sp" />
+        android:textSize="33sp"
+        android:text="%%%mm"
+        android:layout_alignBottom="@+id/rep_home_weather_img"
+        android:layout_alignLeft="@+id/rep_home_label1"
+        android:layout_alignStart="@+id/rep_home_label1" />
 
     <TextView
         android:id="@+id/rep_biz_name"
+        android:text="職場の住所"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/rep_home_val"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rep_biz_weather_img"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rep_biz_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/rep_home_val"
-        android:textSize="21sp" />
+        android:src="@drawable/rainy" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rep_biz_label1"
+        android:text="降水量"
+        android:textSize="14sp"
+        android:layout_alignTop="@+id/rep_biz_weather_img"
+        android:layout_alignLeft="@+id/rep_home_val"
+        android:layout_alignStart="@+id/rep_home_val" />
 
     <TextView
         android:id="@+id/rep_biz_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/rep_biz_name"
-        android:textSize="16sp" />
+        android:textSize="33sp"
+        android:text="%%%mm"
+        android:layout_alignBottom="@+id/rep_biz_weather_img"
+        android:layout_alignLeft="@+id/rep_biz_label1"
+        android:layout_alignStart="@+id/rep_biz_label1" />
+
+
 
 </RelativeLayout>
